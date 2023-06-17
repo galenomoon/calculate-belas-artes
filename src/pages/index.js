@@ -6,8 +6,8 @@ import { useEffect, useState } from 'react'
 
 export default function Home() {
   const max_value = 10
-  const [N1, setN1] = useState(0)
-  const [N2, setN2] = useState(0)
+  const [N1, setN1] = useState('')
+  const [N2, setN2] = useState('')
   const [final, setFinal] = useState(0)
 
   useEffect(() => {
@@ -18,6 +18,24 @@ export default function Home() {
     const result = ((N1 * 2) + (N2 * 3)) / 5
     setFinal(result)
   }
+
+  function handleSetValue(e) {
+    setValue("N1", setN1, e)
+    setValue("N2", setN2, e)
+  }
+
+  function setValue(name, setState, e) {
+    const value = e.target.value
+
+    if (e.target.name === name) {
+      if (value === "") return setState("")
+      if (value === "," || value === ".") return setState(0)
+      if (parseFloat(value) > max_value) return setState(max_value)
+
+      setState(e.target.value)
+    }
+  }
+
   return (
     <main className='flex flex-col items-center justify-center h-screen text-[#684c76] [#FEF1E8] text-center'>
       {final >= 9 && <ConfettiExplosion />}
@@ -46,9 +64,10 @@ export default function Home() {
             value={N1}
             max={max_value}
             min={0}
-            type='number'
+            type="number"
+            name="N1"
             className='border-[3px] outline-none border-[#E8A0BF] w-[100px] p-2 text-center bg-[#fdfdfd]/90 rounded-full text-2xl'
-            onChange={(e) => parseFloat(e.target.value) > max_value ? setN1(max_value) : setN1(parseFloat(e.target.value))}
+            onChange={handleSetValue}
           />
         </div>
         <div className='flex items-center gap-2 justify-center'>
@@ -59,17 +78,15 @@ export default function Home() {
             value={N2}
             max={max_value}
             min={0}
-            type='number'
+            type="number"
+            name="N2"
             className='border-[3px] outline-none border-[#E8A0BF] w-[100px] p-2 text-center bg-[#fdfdfd]/90 rounded-full text-2xl'
-            onChange={(e) => parseFloat(e.target.value) > max_value ? setN2(max_value) : setN2(parseFloat(e.target.value))}
+            onChange={handleSetValue}
           />
         </div>
       </div>
       <p className='mt-6 text-6xl whitespace-nowrap'>
-        Nota Final: {final || "00"}
-      </p>
-      <p className='text-xl font-medium mt-10 text-[#ff0000]'>
-         Utilizar VIRGULA ( , ) ao invés de PONTO ( . ) para números decimais
+        Nota Final: {final?.toFixed(2).replace(".", ",") || "00"}
       </p>
       <p className='text-xl font-medium mt-10'>
         Agradecimentos especiais <br /> a Lua Santiago e seu namoradinho {"<3"}
