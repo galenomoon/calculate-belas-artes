@@ -5,7 +5,7 @@ import ConfettiExplosion from 'react-confetti-explosion';
 import { useEffect, useState } from 'react'
 
 export default function Home() {
-  const max_value = 30
+  const max_value = 10
   const [N1, setN1] = useState(0)
   const [N2, setN2] = useState(0)
   const [final, setFinal] = useState(0)
