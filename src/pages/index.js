@@ -5,7 +5,7 @@ import ConfettiExplosion from 'react-confetti-explosion';
 import { useEffect, useState } from 'react'
 
 export default function Home() {
-  const max_value = 10
+  const max_value = 100
   const [N1, setN1] = useState(0)
   const [N2, setN2] = useState(0)
   const [final, setFinal] = useState(0)
@@ -48,7 +48,7 @@ export default function Home() {
             min={0}
             type='number'
             className='border-[3px] outline-none border-[#E8A0BF] w-[100px] p-2 text-center bg-[#fdfdfd]/90 rounded-full text-2xl'
-            onChange={(e) => parseFloat(e.target.value) > max_value ? setN1(max_value) : setN1(parseFloat(e.target.value))}
+            onChange={(e) => parseFloat(e.target.value) > max_value ? setN1(max_value) : setN1(parseFloat(e.target.value.replace(".", ",")))}
           />
         </div>
         <div className='flex items-center gap-2 justify-center'>
@@ -61,7 +61,7 @@ export default function Home() {
             min={0}
             type='number'
             className='border-[3px] outline-none border-[#E8A0BF] w-[100px] p-2 text-center bg-[#fdfdfd]/90 rounded-full text-2xl'
-            onChange={(e) => parseFloat(e.target.value) > max_value ? setN2(max_value) : setN2(parseFloat(e.target.value))}
+            onChange={(e) => parseFloat(e.target.value) > max_value ? setN2(max_value) : setN2(parseFloat(e.target.value.replace(".", ",")))}
           />
         </div>
       </div>
