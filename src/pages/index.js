@@ -11,6 +11,7 @@ export default function Home() {
   }, [N1, N2])
 
   function calculateResult() {
+
     const result = ((N1 * 2) + (N2 * 3)) / 5
     setFinal(result)
   }
@@ -23,11 +24,13 @@ export default function Home() {
       <div className='flex gap-2'>
         <input
           value={N1}
+          type='number'
           className='border-[3px] outline-none border-[#E8A0BF] w-[100px] p-2 text-center bg-[#F8E8EE] rounded-full text-2xl'
           onChange={(e) => setN1(parseInt(e.target.value))}
         />
         <input
           value={N2}
+          type='number'
           className='border-[3px] outline-none border-[#E8A0BF] w-[100px] p-2 text-center bg-[#F8E8EE] rounded-full text-2xl'
           onChange={(e) => setN2(parseInt(e.target.value))}
         />
