@@ -11,7 +11,6 @@ export default function Home() {
   }, [N1, N2])
 
   function calculateResult() {
-
     const result = ((N1 * 2) + (N2 * 3)) / 5
     setFinal(result)
   }
@@ -26,7 +25,6 @@ export default function Home() {
           <p>
             N1:
           </p>
-
           <input
             value={N1}
             type='number'
@@ -47,7 +45,7 @@ export default function Home() {
         </div>
       </div>
       <p className='mt-6 text-6xl'>
-        Nota Final {final}
+        Nota Final: {final || "00"}
       </p>
     </main>
   )
