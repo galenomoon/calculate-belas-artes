@@ -6,22 +6,28 @@ import { useEffect, useState } from 'react'
 
 export default function Home() {
   const max_value = 10
-  const [N1, setN1] = useState('')
-  const [N2, setN2] = useState('')
+  const [UN1, setUN1] = useState('')
+  const [UN2, setUN2] = useState('')
+  const [UN3, setUN3] = useState('')
+  const [UN4, setUN4] = useState('')
+  const minimum = 6
   const [final, setFinal] = useState(0)
 
   useEffect(() => {
     calculateResult()
-  }, [N1, N2])
+    //eslint-disable-next-line
+  }, [UN1, UN2, UN3, UN4])
 
   function calculateResult() {
-    const result = ((N1 * 2) + (N2 * 3)) / 5
-    setFinal(result)
+    const newResult = (((UN1 + UN2) * 2) + ((UN3 + UN4) * 3)) / 5
+    setFinal(newResult)
   }
 
   function handleSetValue(e) {
-    setValue("N1", setN1, e)
-    setValue("N2", setN2, e)
+    setValue("UN1", setUN1, e)
+    setValue("UN2", setUN2, e)
+    setValue("UN3", setUN3, e)
+    setValue("UN4", setUN4, e)
   }
 
   function setValue(name, setState, e) {
@@ -38,7 +44,7 @@ export default function Home() {
 
   return (
     <main className='flex flex-col items-center justify-center h-screen text-[#684c76] [#FEF1E8] text-center'>
-      {final >= 9 && <ConfettiExplosion />}
+      {final >= minimum && <ConfettiExplosion />}
       <Head>
         <title>Calculadora de Notas da Belas Artes - O salva vidas do aluno da BA</title>
         <meta name="description" content="O salva vidas do aluno da BA (Agradecer a Lua Santiago (e o namoradinho dela))" />
@@ -58,35 +64,66 @@ export default function Home() {
       <div className='flex gap-9'>
         <div className='flex items-center gap-2 justify-center'>
           <p className='text-2xl'>
-            N1:
+            UN1:
           </p>
           <input
-            value={N1}
+            value={UN1}
             max={max_value}
             min={0}
             type="number"
-            name="N1"
+            name="UN1"
             className='border-[3px] outline-none border-[#E8A0BF] w-[100px] p-2 text-center bg-[#fdfdfd]/90 rounded-full text-2xl'
             onChange={handleSetValue}
           />
         </div>
         <div className='flex items-center gap-2 justify-center'>
           <p className='text-2xl'>
-            N2:
+            UN2:
           </p>
           <input
-            value={N2}
+            value={UN2}
             max={max_value}
             min={0}
             type="number"
-            name="N2"
+            name="UN2"
+            className='border-[3px] outline-none border-[#E8A0BF] w-[100px] p-2 text-center bg-[#fdfdfd]/90 rounded-full text-2xl'
+            onChange={handleSetValue}
+          />
+        </div>
+        <div className='flex items-center gap-2 justify-center'>
+          <p className='text-2xl'>
+            UN3:
+          </p>
+          <input
+            value={UN3}
+            max={max_value}
+            min={0}
+            type="number"
+            name="UN3"
+            className='border-[3px] outline-none border-[#E8A0BF] w-[100px] p-2 text-center bg-[#fdfdfd]/90 rounded-full text-2xl'
+            onChange={handleSetValue}
+          />
+        </div>
+        <div className='flex items-center gap-2 justify-center'>
+          <p className='text-2xl'>
+            UN4:
+          </p>
+          <input
+            value={UN4}
+            max={max_value}
+            min={0}
+            type="number"
+            name="UN4"
             className='border-[3px] outline-none border-[#E8A0BF] w-[100px] p-2 text-center bg-[#fdfdfd]/90 rounded-full text-2xl'
             onChange={handleSetValue}
           />
         </div>
       </div>
       <p className='mt-6 text-6xl whitespace-nowrap'>
-        Nota Final: {final?.toFixed(2).replace(".", ",") || "00"}
+        Nota Final:
+        <span className={final >= minimum ? 'text-green-500' : 'text-red-500'}>
+         {" "} {final?.toFixed(2).replace(".", ",") || "00"}
+        </span>
       </p>
       <p className='text-xl font-medium mt-10'>
         Agradecimentos especiais <br /> a Lua Santiago e seu namoradinho {"<3"}
