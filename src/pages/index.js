@@ -19,7 +19,7 @@ export default function Home() {
   }, [UN1, UN2, UN3, UN4])
 
   function calculateResult() {
-    const newResult = (((UN1 + UN2) * 2) + ((UN3 + UN4) * 3)) / 5
+    const newResult = (((UN1 + UN2) * 2) + ((UN3 + UN4) * 3)) / 10
     setFinal(newResult)
   }
 
